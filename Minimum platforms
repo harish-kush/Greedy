@@ -1,0 +1,28 @@
+int findPlatform(vector<int>& arr, vector<int>& dep) {
+        // Your code here
+        int n = arr.size();
+        sort(arr.begin(),arr.end());
+        sort(dep.begin(),dep.end());
+        int i=1;
+        int j=0;
+        int count =1;
+        int platforms = 1;
+        while(i<n and j<n){
+            if(dep[j]>=arr[i]){
+                /*agr pichli train ka departure time jyada h 
+                mtlb ye h ki wo train ek platform pr rukegi*/
+                count++;
+                // next arr time of next train k liye check kroonga
+                i++;
+            }   
+            else {
+                /* agr departure time kam h kisi tain k aane se pehle toh platfom ki 
+                jarroort uss case me nahi h*/
+                count--;
+                // next dep time k liye check kroonga
+                j++;
+            }
+            platforms = max(platforms,count);
+        }
+        return platforms;
+    }
